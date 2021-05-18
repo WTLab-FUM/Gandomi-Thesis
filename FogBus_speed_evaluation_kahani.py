@@ -28,16 +28,18 @@ elapsed_times = np.zeros(1000)
 cnt_url = 0
 all_requests = []
 for index, tweet in enumerate(X_test):
-    url = 'http://' + urls[cnt_url] + '/Healthfog/myThesis.php'
+    # url = 'http://' + urls[cnt_url] + '/Healthfog/myThesis.php'
+    url = 'http://172.21.51.166/Healthfog/myThesis_kahani.php'
     data = {'data': tweet}
     all_requests += [grequests.post(url, data=data)]
-    print(str(index), '[' + urls[cnt_url] + '] :', tweet)
+    # print(str(index), '[' + urls[cnt_url] + '] :', tweet)
+    print(str(index), '[172.21.51.166] :', tweet)
     cnt_url = (cnt_url + 1) % 5
 
     if index == 999:
         break
 
 start_time = time.time()
-grequests.map(all_requests)
+print(grequests.map(all_requests))
 elapsed_times = (time.time() - start_time)
 print(elapsed_times, 'seconds')
